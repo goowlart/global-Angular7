@@ -1,0 +1,28 @@
+input .ng-dirty .ng-invalid  {
+    border-color: red
+}
+
+
+.container {
+    background:#F9F9F9;
+    padding-top: 150px;
+    max-width: 400px;
+ 
+}
+.container a {
+    color: red;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.container input {
+    color: #495057;
+}
+.container button {
+    margin: 20px 0px 40px;
+}
+.container h2 {
+    color: #2c3e50;
+    text-align: center;
+    padding-bottom: 20px;
+}
