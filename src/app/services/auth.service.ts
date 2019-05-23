@@ -1,3 +1,4 @@
+import { Router, CanActivate } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,13 +10,15 @@ import { User } from '../models/user';
 
 
 @Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
+  providedIn: 'root',
+}
+
+)
+export class AuthService implements CanActivate {
 
   formLogin: User
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public router: Router) { }
 
   readonly _baseUrl: string = 'http://localhost:3001/api';
 
@@ -23,17 +26,24 @@ export class AuthService {
     return this.http.post(`${this._baseUrl}/auth`, formLogin)
   }
 
-isLoggedIn() {
-   const { token } = JSON.parse(localStorage.getItem('data'))
+  isLoggedIn() {
+    const { token } = JSON.parse(localStorage.getItem('data'))
+    return !!token
+  }
 
-   return !!token
-}
+  logout() {
+    localStorage.clear()
+  }
 
-logout () {
-  localStorage.clear()
-}
+  canActivate(): boolean {
+    if (this.isLoggedIn() == true) {
+      return true;
+    } else {
+      this.router.navigate(['']);
+      return false;
+    }
 
-
+  }
   storeUser(res) {
     const { token, user } = res
     const data = {

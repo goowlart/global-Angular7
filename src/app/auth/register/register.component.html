@@ -1,3 +1,40 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <form  [formGroup]="form" (submit)="register(form)">
+    <h2>Create an account</h2>
+
+      <input
+        formControlName="name"
+        required type="text" 
+        class="form-control" 
+        placeholder="Your name (ex. Jhon Doe)">
+
+      <input  
+      formControlName="email"
+      required 
+      type="email" 
+      class="form-control" 
+      placeholder="Email">
+
+      <input 
+      formControlName="password"
+      required  
+      type="password" 
+      class="form-control"
+     placeholder="Password">
+
+
+      <input 
+      formControlName="password2"
+      required  
+      type="password" 
+      class="form-control"
+       placeholder="Comfirm you password">
+
+       <div *ngFor="let error of errors" class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+
+    <button type="submit" class="btn btn-block btn-danger">Create</button>
+  </form>
+  <a [routerLink]="['/']" > Return to login screen</a> <br>
+</div>

@@ -1,7 +1,6 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
-import { User } from '../../models/user'
+import { Router } from "@angular/router"
 
 import { Component, OnInit } from '@angular/core';
 
@@ -13,15 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  user: User = {
-    email: '',
-    password: ''
-  }
+  form: FormGroup
 
-   form: FormGroup
-
-
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,10 +24,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.form.value)
     this.auth.login(this.form.value).subscribe(
       res => {
-        this.auth.storeUser(res)
+        this.auth.storeUser(res);
+        this.router.navigate(['/home'])
       },
       err => console.log(err)
     )

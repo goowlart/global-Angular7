@@ -2,7 +2,6 @@ input .ng-dirty .ng-invalid  {
     border-color: red
 }
 
-
 .container {
     background:#F9F9F9;
     padding-top: 150px;
@@ -19,7 +18,7 @@ input .ng-dirty .ng-invalid  {
     color: #495057;
 }
 .container button {
-    margin: 20px 0px 40px;
+    margin: 33px 0px 40px;
 }
 .container h2 {
     color: #2c3e50;
