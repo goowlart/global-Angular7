@@ -1,13 +1,11 @@
-import { Router, CanActivate } from '@angular/router';
+
 
 import { Injectable } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-/* import { tap } from 'rxjs/operators'
-import { Observable, BehaviorSubject } from 'rxjs' */
 
 
-import { User } from '../models/user';
-
+import { User} from '../models/User'
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +14,21 @@ import { User } from '../models/user';
 )
 export class AuthService implements CanActivate {
 
-  formLogin: User
 
   constructor(private http: HttpClient, public router: Router) { }
 
   readonly _baseUrl: string = 'http://localhost:3001/api';
 
-  login(formLogin) {
+  create(formCreate: User) {
+    return this.http.post(`${this._baseUrl}/register`, formCreate)
+  } 
+
+  login(formLogin: User ) {
     return this.http.post(`${this._baseUrl}/auth`, formLogin)
   }
 
   isLoggedIn() {
-    const { token } = JSON.parse(localStorage.getItem('data'))
+    const { token  } = JSON.parse(localStorage.getItem('data'))
     return !!token
   }
 
