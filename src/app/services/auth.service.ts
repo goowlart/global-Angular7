@@ -2,7 +2,13 @@
 
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs'
+
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
+
 
 
 import { User} from '../models/User'
@@ -23,8 +29,15 @@ export class AuthService implements CanActivate {
     return this.http.post(`${this._baseUrl}/register`, formCreate)
   } 
 
-  login(formLogin: User ) {
+  login(formLogin: User ): Observable < any >  {
     return this.http.post(`${this._baseUrl}/auth`, formLogin)
+    .catch(this.errorHandler)
+   
+  }
+
+
+  errorHandler(error: HttpErrorResponse) {
+     return Observable.throw(error.error.error || 'Server Error')
   }
 
   isLoggedIn() {

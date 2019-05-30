@@ -1,3 +1,4 @@
+
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from "@angular/router"
@@ -13,6 +14,8 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   form: FormGroup
+  errorServer: String = null
+  
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -29,7 +32,13 @@ export class LoginComponent implements OnInit {
         this.auth.storeUser(res);
         this.router.navigate(['/home'])
       },
-      err => console.log(err)
+      err => {
+        this.errorServer = err
+        setTimeout(() => {
+          this.errorServer = null
+        }, 5000);
+      }
+     
     )
 
   }
