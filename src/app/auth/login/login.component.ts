@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   errorServer: String = null
   
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.form.value).subscribe(
       res => {
+    
         this.auth.storeUser(res);
         this.router.navigate(['/home'])
       },

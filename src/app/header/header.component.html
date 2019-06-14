@@ -1,0 +1,27 @@
+<div class="row card-header">
+  <div class="col-12 col-md-10">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item" >
+        <a class="nav-link active" href="#">Programming</a>
+      </li>
+      <li *ngFor="let project of projects">
+          <a  (click)="selectedPeoject(project)" [ngStyle]="{'color': project.color }"class="nav-link "  >{{project.title}}</a>
+        </li>
+      
+     <!--  <li v-for="(item, index) in items" :key="index" class="nav-item" >
+  
+        <a class="nav-link"  :style="{'color': item.color}">{{item.title}}</a>
+      </li> -->
+      <li class="nav-item">
+        <a (click)="newPeoject()" class="nav-link" >+</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-6 col-md-2">
+ 
+      <button>Logout</button>
+
+  </div>
+
+
+</div>

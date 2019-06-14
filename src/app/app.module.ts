@@ -8,7 +8,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
  import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 /* import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; */
-import { HttpClientModule } from '@angular/common/http';
+import { ServicesModule } from './services/services.module'
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,13 +16,25 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { AddProjectComponent } from './home/add-project/add-project.component';
+import { ProgrammingComponent } from './home/programming/programming.component';
+import { TasksComponent } from './home/tasks/tasks.component'
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    AddProjectComponent,
+    ProgrammingComponent,
+    TasksComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,10 +44,7 @@ import { HomeComponent } from './home/home.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     FormsModule,
-  
-
-    HttpClientModule,
- 
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

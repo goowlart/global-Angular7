@@ -1,3 +1,4 @@
-<p>
-  home works!
-</p>
+<app-header [projects]="Projects" (addAsset)="addProjectTab()" (selectedd)="selected($event)"> </app-header>
+<app-add-project (childEvent)="loadingProjects()" *ngIf="addTab" (addAsset)="addProjectTab()" ></app-add-project>
+<!-- <app-programming [projects]="Projects" ></app-programming> -->
+<app-tasks [tasks]="Project" ></app-tasks>
